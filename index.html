@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY ANNIVERSARY!!</title>
+
+<style>
+    @font-face { font-family: Radikal Bold; src: url('Radikal Bold.ttf'); } 
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Radikal Bold', sans-serif;
+        background: url("miffy.png") no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        color: #333;
+    }
+    .radikal {
+        font-family: 'Radikal Bold', sans-serif;
+    }
+    body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url("miffy.png") center center no-repeat;
+    background-size: cover;
+
+    filter: blur(3px);
+    transform: scale(1.1);
+
+    z-index: -1;
+}
+
+    .container {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        max-width: 900px;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+        color: #ff4d6d;
+        white-space: nowrap;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 20px;
+        white-space: nowrap;
+    }
+
+    button {
+        background-color: #ff4d6d;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        white-space: nowrap;
+    }
+
+    button:hover {
+        background-color: #e63950;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>HAPPY ANNIVERSARY SUMMER!!</h1>
+    <p class="radikal">
+        i love you sooosososo much baby!! i hope u like this website i made MWAAAH!!!
+    </p>
+
+    <button class="radikal" onclick="window.location.href='home.html'">#open it up</button>
+</div>
+
+</body>
+</html>

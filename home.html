@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories</title>
+
+<style>
+@font-face { font-family: Radikal Bold; src: url('Radikal Bold.ttf'); } 
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Radikal Bold;
+    background: url("miffy.png") center center no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+}
+    body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url("miffy.png") center center no-repeat;
+    background-size: cover;
+
+    filter: blur(3px);
+    transform: scale(1.1);
+
+    z-index: -1;
+}
+
+.container {
+    background: rgba(255,255,255,0.95);
+    padding: 50px 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ff4d6d;
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.small {
+    font-size: 10px;
+}
+
+button {
+    font-family: Radikal Bold;
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+    padding: 20px 0;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #e63950;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>RAGZA TIMELINE</h1>
+    <p>Click a year to see a calendar of what we did!!!</p>
+    <p class="small">*don't worry, this won't be the only thing in the website!! ill add more things when i have time hehe <br> (u can also suggest!!)   </p>
+    <button onclick="location.href='2025.html'">Our 2025</button>
+    <button onclick="location.href='2026.html'">Our 2026</button>
+</div>
+
+</body>
+</html>

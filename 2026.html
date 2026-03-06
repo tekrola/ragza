@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RAGZA 2026</title>
+
+<style>
+    @font-face { font-family: Radikal Bold; src: url('Radikal Bold.ttf'); } 
+body{
+    font-family:Radikal Bold;
+    background:#fff0f5;
+    margin:40px;
+    text-align:center;
+}
+
+.nav-btn {
+    font-family: Radikal Bold;
+    position: fixed;
+    top: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background-color: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.nav-btn:hover {
+    background-color: #e63950;
+}
+
+#homeBtn {
+    font-family: Radikal Bold;
+    left: 20px;
+}
+
+#y2025Btn {
+    font-family: Radikal Bold;
+    right: 20px;
+}
+
+h1{
+    color:#ff4d6d;
+}
+h6{
+    color:#ff4d6d;
+}
+
+.year{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.month{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.month h2{
+    margin-bottom:10px;
+}
+
+.weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:4px;
+}
+
+.day{
+    padding:8px;
+    border-radius:6px;
+    background:#f5f5f5;
+    cursor:pointer;
+}
+
+.day:hover{
+    background:#ff4d6d;
+    color:white;
+}
+
+.day.memory{
+    background:#ff4d6d;
+    color:white;
+    font-weight:bold;
+}
+
+.memoryBox{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    width:400px;
+    display:none;
+}
+
+.closeBtn{
+    font-family: Radikal Bold;
+    margin-top:20px;
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:20px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<button class="nav-btn" id="homeBtn" onclick="location.href='index.html'">Home</button>
+<button class="nav-btn" id="y2025Btn" onclick="location.href='2025.html'">2025</button>
+
+<h1>RAGZA 2026</h1>
+<h6>Ill add images soon nyommm</h6>
+
+<div class="year" id="calendar"></div>
+
+<div class="memoryBox" id="memoryBox">
+    <h2 id="memoryTitle"></h2>
+    <p id="memoryText"></p>
+    <img id="memoryImage" src="" style="max-width:100%; margin-top:15px; border-radius:15px; display:none;">
+    <button class="closeBtn" onclick="closeMemory()">close</button>
+</div>
+
+<script>
+const memories = {
+  "January-6": { 
+    title: "01/06/26", 
+    text: "We went to Venice and found an iso spot!!\nGenuinely unfindable but its kinda hard to get in\nWe also ate at Ramen Kuroda and saved their pork by adding 1 billion togarashi",
+    image: ""
+  },
+  "January-15": { 
+    title: "01/15/26", 
+    text: "Terrible Curry I almost died at Coco Ichibanya\nIso spot again very good dryhumping #lovubaby",
+    image: ""
+  },
+  "January-24": { 
+    title: "01/24/26", 
+    text: "The day I promposed!! Another moa date and we went skating, din tai, and karaoke!! We sang undead like nerds\nWe got caught by another #GUARD at moa sky",
+    image: ""
+  },
+  "January-31": { 
+    title: "01/31/26", 
+    text: "Watched Scream at Raggy house!! You gave me the best birthday gifts I've ever received too :)\n(Biscoff tres leches, Decidueye plush and drawing, photocards, letter)\nI love you so much baby :)",
+    image: ""
+  },
+  "February-2": { 
+    title: "02/02/26", 
+    text: "My birthday!! We had dinner with my family @ Steak and Frice :)",
+    image: ""
+  },
+  "February-13": { 
+    title: "02/13/26", 
+    text: "PROM DAY!! We ate and went photobooth and did prom transitions\nAfter prom you got REALLY freakinf drunk and I had to save you from certain death because I'm the goat",
+    image: ""
+  },
+  "February-14": { 
+    title: "02/14/26", 
+    text: "Valentines day!! We had dinner at Bom Gosto then booked a grab to glorietta LOL I wonder why",
+    image: ""
+  },
+  "February-15": { 
+    title: "02/15/26", 
+    text: "Meetup @ muzz house for IP!! Lots of cuddling hehehe",
+    image: ""
+  },
+  "February-21": { 
+    title: "02/21/26", 
+    text: "Post retreat samgyup!!!\nWe also scavenged to get tissues for iso in the foodcourt LMFAO",
+    image: ""
+  },
+  "March-4": { 
+    title: "03/04/26", 
+    text: "Anniversary dinner!! We are in heat.",
+    image: ""
+  }
+}
+
+const months = [
+{ name:"January", days:31, start:4 },
+{ name:"February", days:28, start:0 },
+{ name:"March", days:31, start:0 },
+{ name:"April", days:30, start:3 },
+{ name:"May", days:31, start:5 },
+{ name:"June", days:30, start:1 },
+{ name:"July", days:31, start:3 },
+{ name:"August", days:31, start:6 },
+{ name:"September", days:30, start:2 },
+{ name:"October", days:31, start:4 },
+{ name:"November", days:30, start:0 },
+{ name:"December", days:31, start:2 }
+]
+
+const weekdays = ["S","M","T","W","T","F","S"]
+const calendar = document.getElementById("calendar")
+
+months.forEach(month=>{
+    let monthDiv = document.createElement("div")
+    monthDiv.className = "month"
+
+    let title = document.createElement("h2")
+    title.innerText = month.name
+
+    let weekdayRow = document.createElement("div")
+    weekdayRow.className = "weekdays"
+    weekdays.forEach(d=>{
+        let w = document.createElement("div")
+        w.innerText=d
+        weekdayRow.appendChild(w)
+    })
+
+    let daysGrid = document.createElement("div")
+    daysGrid.className = "days"
+
+    for(let e=0; e<month.start; e++){
+    let empty = document.createElement("div")
+    daysGrid.appendChild(empty)
+}
+
+for(let i=1;i<=month.days;i++){
+    let day = document.createElement("div")
+    day.className="day"
+    day.innerText=i
+
+    if(memories[month.name+"-"+i]){
+        day.classList.add("memory")
+    }
+
+    day.onclick=()=>openMemory(month.name,i)
+    daysGrid.appendChild(day)
+}
+
+    monthDiv.appendChild(title)
+    monthDiv.appendChild(weekdayRow)
+    monthDiv.appendChild(daysGrid)
+    calendar.appendChild(monthDiv)
+})
+
+function openMemory(month,day){
+    let key = month+"-"+day
+    let box = document.getElementById("memoryBox")
+    let img = document.getElementById("memoryImage")
+
+    if(memories[key]){
+        document.getElementById("memoryTitle").innerText = memories[key].title
+        document.getElementById("memoryText").innerText = memories[key].text
+
+        if(memories[key].image){
+            img.src = memories[key].image
+            img.style.display = "block"
+        } else {
+            img.style.display = "none"
+        }
+
+    }else{
+        document.getElementById("memoryTitle").innerText = month+" "+day
+        document.getElementById("memoryText").innerText = "nothing yet!! suggest if theres something u wanna add hehe #lovu"
+        img.style.display = "none"
+    }
+
+    box.style.display="block"
+}
+function closeMemory(){
+document.getElementById("memoryBox").style.display = "none"
+}
+</script>
+
+</body>
+</html>
